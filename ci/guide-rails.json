@@ -1,0 +1,73 @@
+{
+	"metadata": {
+		"version": 1
+	},
+	"application": {
+		"name": "alexey-2",
+		"language": "LANGUAGE_UNDEFINED",
+		"artifact_store": {
+			"repositories": null
+		}
+	},
+	"pipeline": {
+		"segments": [
+			{
+				"name": "Build",
+				"segment_type": "build",
+				"exit_actions": {},
+				"deployment_strategy": {},
+				"application_init": {},
+				"packages": [
+					{
+						"name": "((application.name))",
+						"downloads": [],
+						"files": [
+							"((application.name))*"
+						]
+					}
+				],
+				"instance_tags": [
+					{
+						"name": "application.name",
+						"value": "((application.name))"
+					}
+				],
+				"post_deployment_actions": {
+					"instances": null,
+					"loadbalanced": false,
+					"loadbalancer": {
+						"TargetGroupName": "",
+						"TargetGroupPort": 0,
+						"TargetGroupProtocol": "",
+						"TargetType": "",
+						"VPCID": "",
+						"HealthCheckEnabled": false,
+						"HealthCheckPort": "",
+						"UnhealthyThresholdCount": 0
+					}
+				},
+				"tasks": [
+					{
+						"name": "alexey-2",
+						"docker_options": {}
+					}
+				]
+			}
+		],
+		"exit_actions": {},
+		"default_properties": null,
+		"deployment_files": [],
+		"application_init": {
+			"command": "bin/start-service.sh"
+		},
+		"releases": [
+			{
+				"name": "consul",
+				"version": "latest"
+			}
+		]
+	},
+	"organization": {
+		"orgname": "GR-Product"
+	}
+}
