@@ -21,7 +21,9 @@
 						"tags": [
 							"((application.version))"
 						],
-						"path": "ceco3"
+						"path": "ceco3",
+						"context": "ceco4",
+						"docker_file_path": "ceco2"
 					}
 				},
 				"exit_actions": {},
