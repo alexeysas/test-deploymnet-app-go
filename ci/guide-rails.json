@@ -22,8 +22,8 @@
 							"((application.version))"
 						],
 						"path": "",
-						"context": "ceco7",
-						"docker_file_path": "ceco22"
+						"context": "ceco3",
+						"docker_file_path": "ceco222"
 					}
 				},
 				"exit_actions": {},
