@@ -53,129 +53,6 @@
 						"docker_options": {}
 					}
 				]
-			},
-			{
-				"name": "Integration",
-				"segment_type": "integration",
-				"run_after": [
-					"Build"
-				],
-				"exit_actions": {},
-				"deployment_strategy": {
-					"canaries": 1,
-					"max_in_flight": 1,
-					"canary_watch_time": "5000-30000",
-					"update_watch_time": "5000-30000",
-					"serial": false
-				},
-				"application_init": {},
-				"package_dependencies": [
-					"((application.name))"
-				],
-				"instance_tags": [
-					{
-						"name": "application.name",
-						"value": "((application.name))"
-					}
-				],
-				"instance_groups": [
-					{
-						"name": "((application.name))",
-						"number_of_instances": 1,
-						"cloud_provider_type": "aws",
-						"vm_type": "default",
-						"os_type": "default",
-						"networks": [
-							"integration"
-						],
-						"availability_zones": [
-							"default"
-						],
-						"deployment_strategy": {},
-						"dependencies": [
-							{
-								"name": "consul",
-								"release": "consul",
-								"provides": [
-									{
-										"name": "consul_servers.as",
-										"value": "consul_1"
-									}
-								],
-								"consumes": [
-									{
-										"name": "consul_servers.from",
-										"value": "consul_1"
-									}
-								],
-								"properties": [
-									{
-										"name": "consul.servicename",
-										"value": "((consul.servicename))"
-									},
-									{
-										"name": "consul.environment",
-										"value": "((consul.environment))"
-									},
-									{
-										"name": "consul.datacenter",
-										"value": "((consul.datacenter))"
-									},
-									{
-										"name": "consul.server",
-										"value": "false"
-									},
-									{
-										"name": "consul.joinservers",
-										"value": "((consul.joinservers))"
-									},
-									{
-										"name": "calculi.intermediate.cert",
-										"value": "grsecret:tls.cert"
-									},
-									{
-										"name": "calculi.intermediate.key",
-										"value": "grsecret:tls.key"
-									}
-								]
-							}
-						]
-					}
-				],
-				"k8s_instance_groups": [
-					{
-						"tool_config_alias_id": "c29b5819-2d06-4c04-552f-cac50c6689d9",
-						"name": "((application.name))",
-						"cluster_name": "",
-						"namespace": "((application.name))-((application.shortsha))",
-						"replicas": 1,
-						"containers": [
-							{
-								"name": "((application.name))",
-								"image": "((gr.dockerregistry.repo_url))/((application.name)):((application.version))",
-								"ports": [
-									{
-										"containerPort": 2000
-									}
-								],
-								"resources": {},
-								"imagePullPolicy": "Always"
-							}
-						],
-						"dns_zone_type": "public",
-						"service_name": "((application.name))-((application.shortsha))",
-						"volumes": [
-							{
-								"size": "1Gi",
-								"mount_path": "/dd",
-								"attributes": {
-									"ReadWriteOnce": "true"
-								}
-							}
-						]
-					}
-				],
-				"deployment_target": 2
 			}
 		],
 		"exit_actions": {},
@@ -183,13 +60,7 @@
 		"deployment_files": [],
 		"application_init": {
 			"command": "bin/start-service.sh"
-		},
-		"releases": [
-			{
-				"name": "consul",
-				"version": "latest"
-			}
-		]
+		}
 	},
 	"organization": {
 		"orgname": "GR-Product"
