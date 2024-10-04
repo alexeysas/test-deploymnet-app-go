@@ -1,0 +1,26 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: CustomJob
+name: simple-callback-job
+description: An example custom job definition
+
+inputs:
+  customjob_input1:
+    required: true
+  customjob_input2:
+    default: default job input value
+handlers:
+  init:
+    uses: docker://alpine:3.20
+    command: /bin/sh
+    args: -c "sleep 50000"
+    env:
+      INPUT1: ${{ inputs.customjob_input1 }}
+
+  callback:
+    uses: docker://alpine:3.20
+    command: /bin/sh
+    args: -c "echo ${{ handlers.init.outputs.output1 }} ${{ handler.payload }}"
+  cancel:
+    uses: docker://alpine:3.20
+    command: /bin/sh
+    args: -c "echo \"canceled with reason $CUSTOMJOBTASK_CANCELLATION_REASON amd ${{ handler.reason }} and init output  handlers.init.outputs.output1 \""
