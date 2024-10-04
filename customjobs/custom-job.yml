@@ -12,7 +12,7 @@ handlers:
   init:
     uses: docker://alpine:3.20
     command: /bin/sh
-    args: -c "sleep 50000"
+    args: -c "sleep 20"
     env:
       INPUT1: ${{ inputs.customjob_input1 }}
 
