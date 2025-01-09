@@ -1,0 +1,10 @@
+name: Reusable workflow example
+
+on:
+  push:
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo ${{ vars.VAR1 }}
+      shell: bash
