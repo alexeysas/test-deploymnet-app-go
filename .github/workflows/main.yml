@@ -1,0 +1,10 @@
+name: Reusable workflow example with env secret
+
+on:
+  workflow_call:
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo ${{ secrets.SECRET1 }}
+      shell: bash
