@@ -1,0 +1,16 @@
+
+name: Reusable workflow env as param
+
+on:
+  workflow_call:
+    inputs:
+      env:
+        required: true
+        type: string
+jobs:
+  triage:
+    environment: ${{inputs.env}}
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo ${{ vars.VAR1 }}
+      shell: bash
