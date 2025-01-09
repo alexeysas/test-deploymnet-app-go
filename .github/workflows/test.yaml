@@ -13,3 +13,6 @@ jobs:
     steps:
     - run: echo ${{inputs.config-path}}
       shell: bash
+    - run: echo ${{ vars.VAR1 }}
+      shell: bash
+
